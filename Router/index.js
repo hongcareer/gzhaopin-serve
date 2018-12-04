@@ -47,4 +47,40 @@ router.post('/register', async (req, res) => {
   }
 })
 
+//登录
+router.post('/login', async (req, res) => {
+  //获取用户提交请求参数信息
+  const {username, password} = req.body;
+  console.log(username, password);
+
+  try {
+    //去数据库查找当前用户是否存在
+    const user = await Users.findOne({username});
+    if (user) {
+      //用户名被注册了，可以登录
+      res.json({
+        code: 0,
+        data: {
+          username: user.username,
+          _id: user.id,
+          type: user.type
+        }
+      })
+    } else {
+      //用户还没有注册
+      res.json({
+        code: 1,
+        msg: '用户还没有注册'
+      })
+
+    }
+  } catch (e) {
+    console.log(e);
+    res.json({
+      code: 2,
+      msg: '网络不稳定，请刷新试试~'
+    })
+  }
+})
+
 module.exports = router;
