@@ -1,10 +1,11 @@
 const express = require('express')
 const app = express();
 const db = require('./db');
-const mod = require('./Router/index')
+const mod = require('./modle/index')
 const router = require('./Router/index');
 !(async ()=>{
   await db;
+  // console.log(await mod.find({}));
   app.use(router);
 })()
 app.listen(4000,err=>{
