@@ -12,6 +12,11 @@ const usersType =new mongoose.Schema({
   type: {
     type: String,
     required: true
-  }
+  },
+  header: Number,
+  post: String,
+  salary: String,
+  company: String,
+  info: String
 });
 module.exports = mongoose.model('Users',usersType)
