@@ -13,7 +13,7 @@ const usersType =new mongoose.Schema({
     type: String,
     required: true
   },
-  header: Number,
+  header: String,
   post: String,
   salary: String,
   company: String,
